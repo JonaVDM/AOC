@@ -32,9 +32,23 @@ func part1(data string) string {
 		}
 	}
 	fmt.Println(floor)
-	return fmt.Sprintf("%d", floor)
+	return fmt.Sprint(floor)
 }
 
 func part2(data string) string {
-	return "Part 2"
+	list := strings.Split(data, "")
+	floor := 0
+	for i := range list {
+		if list[i] == "(" {
+			floor += 1
+		} else {
+			floor -= 1
+		}
+
+		if floor < 0 {
+			return fmt.Sprint(i + 1)
+		}
+	}
+
+	return "Not found"
 }
