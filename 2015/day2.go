@@ -35,15 +35,19 @@ func part1(data string) string {
 }
 
 func part2(data string) string {
-	return "Part 2"
+	total := 0
+	for _, i := range strings.Split(data, "\n") {
+		sides := getDims(i)
+		sort.Ints(sides)
+
+		total += sides[0]*2 + sides[1]*2 + sides[0]*sides[1]*sides[2]
+	}
+
+	return fmt.Sprint(total)
 }
 
 func getSides(box string) []int {
-	dim := []int{}
-	for _, i := range strings.Split(box, "x") {
-		i, _ := strconv.Atoi(i)
-		dim = append(dim, i)
-	}
+	dim := getDims(box)
 
 	sides := make([]int, 3)
 	sides[0] = dim[0] * dim[1]
@@ -52,4 +56,13 @@ func getSides(box string) []int {
 
 	sort.Ints(sides)
 	return sides
+}
+
+func getDims(box string) []int {
+	dim := []int{}
+	for _, i := range strings.Split(box, "x") {
+		i, _ := strconv.Atoi(i)
+		dim = append(dim, i)
+	}
+	return dim
 }
