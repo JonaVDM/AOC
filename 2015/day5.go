@@ -42,7 +42,6 @@ func part1(data []string) string {
 
 				for _, fb := range forbidden {
 					if row[i:i+2] == fb {
-						fmt.Println("Hello")
 						nope = true
 					}
 				}
@@ -74,5 +73,42 @@ func part1(data []string) string {
 }
 
 func part2(data []string) string {
-	return "Part 2"
+	nice := 0
+
+	for _, row := range data {
+		doubleCount := 0
+		pairCount := 0
+
+		for i := range row {
+			if i+2 < len(row) {
+				if row[i] == row[i+2] {
+					doubleCount++
+				}
+			}
+
+			if i+3 < len(row) {
+				pair := row[i : i+2]
+
+				for j := i + 2; j < len(row)-1; j++ {
+					if row[j:j+2] == pair {
+						pairCount++
+					}
+				}
+			}
+		}
+
+		fmt.Println(doubleCount)
+
+		if doubleCount < 1 {
+			continue
+		}
+
+		if pairCount < 1 {
+			continue
+		}
+
+		nice++
+	}
+
+	return fmt.Sprint(nice)
 }
