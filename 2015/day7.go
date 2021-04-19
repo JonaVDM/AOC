@@ -30,6 +30,9 @@ func main() {
 	fmt.Printf("Part 2: %s\n", part2(data))
 }
 
+// This took a lot of time, there is a better way of doing it.
+// But I can't be bothered to figure out. This already costs a
+// solid 2+ hours.
 func (s *solver) loop(inst string) uint16 {
 	if solved, set := s.solved[inst]; set {
 		return solved
@@ -96,11 +99,28 @@ func part1(data []string) string {
 		solved: make(map[string]uint16),
 	}
 	res := sl.loop("a")
-	fmt.Println(res)
 
-	return "Part 1"
+	return fmt.Sprint(res)
 }
 
 func part2(data []string) string {
-	return "Part 2"
+	list := make(map[string]string)
+
+	for _, inst := range data {
+		p := strings.Split(inst, " -> ")
+		list[p[1]] = p[0]
+	}
+
+	sl := solver{
+		list:   list,
+		solved: make(map[string]uint16),
+	}
+	res := sl.loop("a")
+
+	sl.solved = make(map[string]uint16)
+	sl.list["b"] = fmt.Sprint(res)
+
+	res = sl.loop("a")
+
+	return fmt.Sprint(res)
 }
