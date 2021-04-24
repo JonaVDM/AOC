@@ -97,8 +97,6 @@ func part2(data []string) string {
 			}
 		}
 
-		fmt.Println(doubleCount)
-
 		if doubleCount < 1 {
 			continue
 		}
