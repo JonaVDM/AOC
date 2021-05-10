@@ -22,8 +22,6 @@ func main() {
 
 	fmt.Printf("Part 1: %s\n", part1(data))
 	fmt.Printf("Part 2: %s\n", part2(data))
-
-	test()
 }
 
 func part1(data []string) string {
