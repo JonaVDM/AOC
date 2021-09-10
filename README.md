@@ -1,4 +1,3 @@
 # AOC
 
-The code I wrote for advent of code.
-Written in GO
+The code I wrote in order to try and solve Advent Of Code!
