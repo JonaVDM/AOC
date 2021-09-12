@@ -52,6 +52,28 @@ func part1(data []string) string {
 	return "we can't get here bus sure go"
 }
 
+// Algo "stolen" from https://www.youtube.com/watch?v=4_5mluiXF5I
 func part2(data []string) string {
-	return "Part 2"
+	busses := strings.Split(data[1], ",")
+
+	time := 0
+	step, _ := strconv.Atoi(busses[0])
+
+	for i := 1; i < len(busses); i++ {
+		bus := busses[i]
+
+		if bus == "x" {
+			continue
+		}
+
+		num, _ := strconv.Atoi(bus)
+
+		for (time+i)%num != 0 {
+			time += step
+		}
+
+		step *= num
+	}
+
+	return fmt.Sprint(time)
 }
