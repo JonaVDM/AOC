@@ -25,20 +25,40 @@ func main() {
 }
 
 func part1(data []string) string {
-	x := 0
-	trees := 0
-
-	for y := range data {
-		if data[y][x] == '#' {
-			trees++
-		}
-
-		x = (x + 3) % len(data[0])
-	}
-
-	return fmt.Sprint(trees)
+	return fmt.Sprint(run(3, 1, data))
 }
 
 func part2(data []string) string {
-	return "Part 2"
+	slopes := []struct{ r, d int }{
+		{r: 1, d: 1},
+		{r: 3, d: 1},
+		{r: 5, d: 1},
+		{r: 7, d: 1},
+		{r: 1, d: 2},
+	}
+
+	total := 1
+
+	for _, slope := range slopes {
+		trees := run(slope.r, slope.d, data)
+		log.Print(trees)
+		total *= trees
+	}
+
+	return fmt.Sprint(total)
+}
+
+func run(right int, down int, hill []string) int {
+	x := 0
+	trees := 0
+
+	for y := 0; y < len(hill); y += down {
+		if hill[y][x] == '#' {
+			trees++
+		}
+
+		x = (x + right) % len(hill[0])
+	}
+
+	return trees
 }
