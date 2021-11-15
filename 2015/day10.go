@@ -15,7 +15,7 @@ func part1(data string) string {
 }
 
 func part2(data string) string {
-	return "Part 2"
+	return fmt.Sprint(solver(data, 0, 50))
 }
 
 func solver(data string, i int, t int) int {
