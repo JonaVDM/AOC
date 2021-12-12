@@ -7,9 +7,7 @@ import (
 	"strings"
 )
 
-// const INPFILE = "day12.input"
-
-const INPFILE = "sample"
+const INPFILE = "day12.input"
 
 func main() {
 	f, err := ioutil.ReadFile(INPFILE)
@@ -39,11 +37,13 @@ func part2(data []string) string {
 
 	caves := searchBetter(tunnels.Tunnels, "start", false)
 
+	checked := make(map[string]int)
+
 	for _, c := range caves {
-		fmt.Println(c)
+		checked[c] += 1
 	}
 
-	return fmt.Sprint(len(caves))
+	return fmt.Sprint(len(checked))
 }
 
 func parse(data []string) Cave {
