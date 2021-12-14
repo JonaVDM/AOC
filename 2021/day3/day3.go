@@ -33,7 +33,7 @@ func (s *Solver) PartOne() {
 	g, _ := strconv.ParseInt(gamma, 2, 64)
 	e, _ := strconv.ParseInt(epsilon, 2, 64)
 
-	fmt.Println("Part one: ", g*e)
+	fmt.Println("Part 1: ", g*e)
 }
 
 func (s *Solver) PartTwo() {
@@ -87,5 +87,5 @@ func (s *Solver) PartTwo() {
 	o, _ := strconv.ParseInt(mc[0], 2, 64)
 	c, _ := strconv.ParseInt(lc[0], 2, 64)
 
-	fmt.Println("Part two: ", o*c)
+	fmt.Println("Part 2: ", o*c)
 }

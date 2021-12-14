@@ -6,6 +6,8 @@ import (
 	"github.com/jonavdm/aoc/2021/day1"
 	"github.com/jonavdm/aoc/2021/day2"
 	"github.com/jonavdm/aoc/2021/day3"
+	"github.com/jonavdm/aoc/2021/day4"
+	"github.com/jonavdm/aoc/2021/day5"
 )
 
 type Day interface {
@@ -15,14 +17,17 @@ type Day interface {
 }
 
 func main() {
-	dayCollection := make(map[string]Day)
+	inputFolder := "inputs"
+	dayCollection := make([]Day, 0)
 
-	dayCollection["day1"] = day1.New("inputs")
-	dayCollection["day2"] = day2.New("inputs")
-	dayCollection["day3"] = day3.New("inputs")
+	dayCollection = append(dayCollection, day1.New(inputFolder))
+	dayCollection = append(dayCollection, day2.New(inputFolder))
+	dayCollection = append(dayCollection, day3.New(inputFolder))
+	dayCollection = append(dayCollection, day4.New(inputFolder))
+	dayCollection = append(dayCollection, day5.New(inputFolder))
 
 	for day, obj := range dayCollection {
-		fmt.Println(day)
+		fmt.Printf("-- Day %d --\n", day+1)
 		obj.Read()
 		obj.PartOne()
 		obj.PartTwo()
