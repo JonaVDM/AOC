@@ -49,8 +49,12 @@ func parse(data []string) map[string]string {
 }
 
 func run(start string, instructions map[string]string, amount int) int64 {
+	letters := make(map[string]int64)
 	pairs := make(map[string]int64)
+
+	letters[string(start[0])] = 1
 	for i := 0; i < len(start)-1; i++ {
+		letters[string(start[i+1])] += 1
 		pairs[start[i:i+2]] += 1
 	}
 
@@ -58,16 +62,11 @@ func run(start string, instructions map[string]string, amount int) int64 {
 		newPair := make(map[string]int64)
 		for pair, amo := range pairs {
 			l := instructions[pair]
+			letters[l] += amo
 			newPair[pair[:1]+l] += amo
 			newPair[l+pair[1:]] += amo
 		}
 		pairs = newPair
-	}
-
-	letters := make(map[string]int64)
-
-	for l, a := range pairs {
-		letters[l[1:]] += a
 	}
 
 	var big, small int64 = 0, math.MaxInt64
