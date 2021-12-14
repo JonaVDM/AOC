@@ -16,9 +16,9 @@ func main() {
 	}
 
 	inp := string(f)
+	inp = strings.TrimSpace(inp)
 
 	data := strings.Split(inp, "\n")
-	data = data[:len(data)-1]
 
 	fmt.Printf("Part 1: %s\n", part1(data))
 	fmt.Printf("Part 2: %s\n", part2(data))
