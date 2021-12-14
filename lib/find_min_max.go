@@ -14,3 +14,19 @@ func FindMinMax(a [2]int) (min int, max int) {
 	}
 	return min, max
 }
+
+func MinMaxList(nums []int) (int, int) {
+	smallest := nums[0]
+	biggest := nums[0]
+	for _, n := range nums {
+		if smallest > n {
+			smallest = n
+		}
+
+		if biggest < n {
+			biggest = n
+		}
+	}
+
+	return smallest, biggest
+}

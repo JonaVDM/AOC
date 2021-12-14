@@ -8,6 +8,8 @@ import (
 	"github.com/jonavdm/aoc/2021/day3"
 	"github.com/jonavdm/aoc/2021/day4"
 	"github.com/jonavdm/aoc/2021/day5"
+	"github.com/jonavdm/aoc/2021/day6"
+	"github.com/jonavdm/aoc/2021/day7"
 )
 
 type Day interface {
@@ -25,6 +27,8 @@ func main() {
 	dayCollection = append(dayCollection, day3.New(inputFolder))
 	dayCollection = append(dayCollection, day4.New(inputFolder))
 	dayCollection = append(dayCollection, day5.New(inputFolder))
+	dayCollection = append(dayCollection, day6.New(inputFolder))
+	dayCollection = append(dayCollection, day7.New(inputFolder))
 
 	for day, obj := range dayCollection {
 		fmt.Printf("-- Day %d --\n", day+1)
