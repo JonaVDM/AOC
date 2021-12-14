@@ -1,39 +1,19 @@
-package main
+package day3
 
 import (
 	"fmt"
-	"io/ioutil"
-	"log"
 	"strconv"
-	"strings"
 )
 
-const INPFILE = "day3.input"
-
-func main() {
-	f, err := ioutil.ReadFile(INPFILE)
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	inp := string(f)
-
-	data := strings.Split(inp, "\n")
-	data = data[:len(data)-1]
-
-	fmt.Printf("Part 1: %s\n", part1(data))
-	fmt.Printf("Part 2: %s\n", part2(data))
-}
-
-func part1(data []string) string {
+func (s *Solver) PartOne() {
 	gamma := ""
 	epsilon := ""
 
-	for i := range data[0] {
+	for i := range s.data[0] {
 		ones := 0
 		zeros := 0
 
-		for _, d := range data {
+		for _, d := range s.data {
 			if d[i] == '0' {
 				zeros++
 			} else {
@@ -53,17 +33,17 @@ func part1(data []string) string {
 	g, _ := strconv.ParseInt(gamma, 2, 64)
 	e, _ := strconv.ParseInt(epsilon, 2, 64)
 
-	return fmt.Sprint(g * e)
+	fmt.Println("Part one: ", g*e)
 }
 
-func part2(data []string) string {
-	mc := make([]string, len(data))
-	lc := make([]string, len(data))
+func (s *Solver) PartTwo() {
+	mc := make([]string, len(s.data))
+	lc := make([]string, len(s.data))
 
-	copy(mc, data)
-	copy(lc, data)
+	copy(mc, s.data)
+	copy(lc, s.data)
 
-	for i := range data[0] {
+	for i := range s.data[0] {
 		mOnes := []string{}
 		mZeros := []string{}
 
@@ -82,7 +62,7 @@ func part2(data []string) string {
 		}
 	}
 
-	for i := range data[0] {
+	for i := range s.data[0] {
 		if len(lc) == 1 {
 			break
 		}
@@ -107,5 +87,5 @@ func part2(data []string) string {
 	o, _ := strconv.ParseInt(mc[0], 2, 64)
 	c, _ := strconv.ParseInt(lc[0], 2, 64)
 
-	return fmt.Sprint(o * c)
+	fmt.Println("Part two: ", o*c)
 }
